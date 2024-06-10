@@ -1,0 +1,16 @@
+name: actions
+run-name: TiilS is running TPLab04
+on: [push]
+jobs:
+  container-job:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: /Users/gadji/1gadji/workspace/projects/lab5
+          key: ${{ runner.os }}-dependencies-${{ hashFiles('**/lockfiles') }}
+      - name: Test project
+        run: chmod ug+x ./.github/workflows/test.sh
